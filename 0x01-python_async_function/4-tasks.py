@@ -17,13 +17,13 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     delays should be in ascending order without using sort() because
     of concurrency. """
     spawn_ls = []
-    delay_ls = []
+    delays = []
     for i in range(n):
         delayed_task = task_wait_random(max_delay)
-        delayed_task.add_done_callback(lambda x: delay_ls.append(x.result()))
+        delayed_task.add_done_callback(lambda x: delays.append(x.result()))
         spawn_ls.append(delayed_task)
 
     for spawn in spawn_ls:
         await spawn
 
-    return delay_ls
+    return delays
