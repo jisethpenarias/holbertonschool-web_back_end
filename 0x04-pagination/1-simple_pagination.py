@@ -36,4 +36,3 @@ class Server:
         gp_start = gp_range[0]
         gp_end = gp_range[1]
         return self.dataset()[gp_start:gp_end]
-   
